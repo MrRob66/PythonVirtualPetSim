@@ -1,0 +1,208 @@
+from tkinter import*
+import tkinter as tk
+import random
+import time
+
+
+#Class to hold main Python code
+class petSim:
+    petweight=0
+    petchoice=1
+    feedArray = [" Apple ","Milkshake","Meat","Grain","Biscuits"]
+    #Add an Array to hold exercises
+
+    def main():
+        #Remove the random number generator and add a user input to choose the start weight
+     petSim.petweight #A module to create the virtual pets starting weight from a random number an set it to  the highest of   two decimal places
+     petSim.petweight=round(random.uniform(1.5,2.5),2)
+
+    #Enable feed and exercise buttons
+    def enableButtons():
+        optFeed.config(state=NORMAL)
+        optExer.config(state=NORMAL)
+
+    def pup():
+        text1.delete('1.0', END)
+        text1.insert(END,"You have been given a pup")
+        petSim.petchoice="Pup"
+        text1.delete('2.0', END)
+        text1.insert(END," it weighs ")
+        text1.delete('3.0', END)
+        text1.insert(END,petSim.petweight)
+        text1.delete('4.0', END)
+        text1.insert(END," kg")
+        text1.delete('5.0',END)
+        text1.insert(END, petSim.feedArray[0])
+        #Disble kitten and bird options
+        rad2.config(state=DISABLED)
+        rad3.config(state=DISABLED)
+        #Enable feed and exercise buttons
+        petSim.enableButtons()
+        
+        
+    def kit():
+        petSim.petweight
+        petSim.petchoice
+        text1.delete('1.0', END)
+        text1.insert(END,"You have been given a Kitten!")
+        text1.delete('2.0', END)
+        text1.insert(END," it weighs ")
+        text1.delete('3.0', END)
+        text1.insert(END,petweight)
+        #Disble pup and bird options
+        rad1.config(state=DISABLED)
+        rad3.config(state=DISABLED)
+        #Enable feed and exercise buttons
+        enableButtons()
+        
+    def bir():
+        petSim.petweight
+        petSim.petchoice
+        text1.delete('1.0', END)
+        text1.insert(END,"You have been given a bird!")
+        text1.delete('2.0', END)
+        text1.insert(END," it weighs ")
+        text1.delete('3.0', END)
+        text1.insert(END,petweight)
+        #Disble pup and kitten options
+        rad1.config(state=DISABLED)
+        rad2.config(state=DISABLED)
+        #Enable feed and exercise buttons
+        enableButtons()
+        
+    def feed():
+        petSim.petweight
+        print ("value is", varFeed.get())
+        if varFeed.get() =="Apple":
+            petSim.petweight+=1
+            Output.txtUpdate()
+        if varFeed.get() =="Meat":
+            petweight+=2
+            Output.txtUpdate()
+        if varFeed.get() =="Biscuit":
+            petweight+=1.5
+            Output.txtUpdate()
+        if varFeed.get() =="Kale":
+            petweight+=0.2
+            Output.txtUpdate()
+        if petSim.petweight >= 5:
+            text1.delete('1.0', END)
+            text1.insert(END,"BOOM") 
+
+    def exercise():
+        petSim.petweight
+        print ("value is", varExer.get())
+        if varExer.get() =="Walk":
+            petweight-=0.2
+            Output.txtUpdate()
+        if varExer.get() =="Jog":
+            petweight-=0.5
+            Output.txtUpdate()
+        if varExer.get() =="Run":
+            petweight-=1.5
+            Output.txtUpdate()
+        if varExer.get() =="Fly":
+            petweight-=2
+            Output.txtUpdate() 
+        if petweight <= 1:
+            text1.delete('1.0', END)
+            text1.insert(END,"IM DEAD THRU STARVATION")
+#Class to hold text output methods
+class Output:
+    #A module to update the text box with feed or exercise information
+    def txtUpdate():
+        petSim.petweight
+        petSim.petchoice
+        text1.delete('1.0', END)
+        text1.insert(END,"Your ")
+        text1.delete('2.0', END)
+        text1.insert(END," pet ")
+        text1.delete('3.0', END)
+        text1.insert(END," now weighs ")
+        text1.delete('4.0', END)
+        text1.insert(END,petSim.petweight)
+
+#GUI Events___________________________________________________________________
+window=Tk()
+#Disable resizing the GUI
+window.resizable(0, 0)
+
+window.title("Virtual Pet Simulator")
+
+#Label to hold program name
+label1=Label(window,text="Virtual Pet Simulator",bg="grey",font="Arial 14 bold",width=30) 
+label1.grid(columnspan=3,row=0)
+
+#Blank label to space GUI (add a blank line )
+label1=Label(window,text="",font="Arial 14 bold",width=30) 
+label1.grid(columnspan=3,row=1)
+
+#Label to hold player name on coloumn zero
+lblName=Label(window,text="Please enter your name",font="Arial 10", bg="grey") 
+lblName.grid(column=0,row=2,sticky=tk.W)
+
+#Text box to input player name on coloumn one
+txtName = Text(window,width=20,height=1,bg="white")
+txtName.grid(column=1,row=2)
+txtName.insert(END,"Text")
+
+#Ok button for player name name on coloumn two
+bName = Button(window,text="Player name OK?", bg="grey")
+bName.grid(column=2,row=2)
+
+#Label to hold pet name
+lblName=Label(window,text="Please enter your pets name",font="Arial 10") 
+lblName.grid(column=0,row=5,sticky=tk.W)
+
+#Text box to input pet name
+txtName = Text(window,width=20,height=1)
+txtName.grid(column=1,row=5)
+txtName.insert(END,"Text")
+
+#Ok button for pet name
+bName = Button(window,text="Pet name OK?")
+bName.grid(column=2,row=5)
+
+#Label to show user what to do - Choose a pet type
+label1=Label(window,text="Choose your pet type",bg="grey",font="Arial 10 bold") 
+label1.grid(columnspan=3,row=3)
+
+#create three Radiobuttons
+radVar = tk.IntVar()
+rad1 = tk.Radiobutton(window, text="Pup",font="Arial 10 bold", variable=radVar, value=1, command=petSim.pup)
+rad1.grid(column=0, row=4,sticky=tk.W)
+
+rad2 = tk.Radiobutton(window, text="Kitten",font="Arial 10 bold", variable=radVar, value=2, command=petSim.kit)
+rad2.grid(column=1, row=4,sticky=tk.W)
+
+rad3 = tk.Radiobutton(window, text="Bird",font="Arial 10 bold", variable=radVar, value=3, command=petSim.bir)
+rad3.grid(column=2, row=4, sticky=tk.E)
+
+#Text box to hold outputs
+text1 = Text(window,width=50, height=3)
+text1.grid(columnspan=3,row=6)
+
+#Option button Feeding
+varFeed = StringVar(window)
+varFeed.set("Feeding") # initial value
+
+optFeed = OptionMenu(window, varFeed, petSim.feedArray[1], "Meat", "Biscuit", "Kale")
+optFeed.grid(column=0,row=7,sticky=tk.W)
+
+#Ok button for feeding
+b = Button(window,text="Feed OK?",command=petSim.feed)
+b.grid(column=0,row=7,sticky=tk.E)
+
+#Option button Exercise
+varExer = StringVar(window)
+varExer.set("Exercise") # initial value
+
+optExer= OptionMenu(window, varExer, "Walk", "Jog", "Run", "Fly")
+optExer.grid(column=1,row=7,sticky=tk.E)
+
+#Ok button for exercising
+c = Button(window,text="Exercise OK?",command=petSim.exercise)
+c.grid(column=2,row=7,sticky=tk.E)
+
+petSim.main()
+window.mainloop()
